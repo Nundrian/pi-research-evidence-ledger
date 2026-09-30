@@ -1,0 +1,43 @@
+{
+  "name": "pi-research-evidence-ledger",
+  "version": "0.1.0",
+  "description": "Append-only source-backed research evidence provenance for long-running Pi sessions.",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "research",
+    "evidence",
+    "provenance",
+    "compaction"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nundrian/pi-research-evidence-ledger.git"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/research-browser.ts",
+      "./extensions/record-evidence.ts",
+      "./extensions/evidence-lookup.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test:python": "python -m pytest -q",
+    "check:ts-syntax": "node --experimental-strip-types --check extensions/research-browser.ts && node --experimental-strip-types --check extensions/record-evidence.ts && node --experimental-strip-types --check extensions/evidence-lookup.ts"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}
