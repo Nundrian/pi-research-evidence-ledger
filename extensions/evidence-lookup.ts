@@ -214,8 +214,8 @@ export default function (pi: ExtensionAPI) {
             ].join("\n")
         );
 
-        const ledgerPaths = Array.isArray(result.ledger_paths)
-          ? result.ledger_paths
+        const ledgerPaths: string[] = Array.isArray(result.ledger_paths)
+          ? result.ledger_paths.map((p: unknown) => String(p))
           : [];
 
         body = [
@@ -223,7 +223,7 @@ export default function (pi: ExtensionAPI) {
           "-----------------------------",
           `Claims returned: ${claims.length}`,
           `Ledgers: ${ledgerPaths.length}`,
-          ...ledgerPaths.map((p) => `  ${p}`),
+          ...ledgerPaths.map((p: string) => `  ${p}`),
           "",
           formatted.length
             ? formatted.join("\n\n")
