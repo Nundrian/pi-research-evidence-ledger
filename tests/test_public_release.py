@@ -1,5 +1,6 @@
 from pathlib import Path
 import py_compile
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 EXT = ROOT / "extensions"
@@ -35,13 +36,20 @@ def test_browser_path_is_configurable():
 def test_missing_ledger_guard_is_present():
     text = (EXT / "ledger_common.py").read_text(encoding="utf-8")
     assert "LEDGER_MISSING" in text
-    assert "break evidence continuity" in text
+    assert "Refusing to create a replacement automatically" in text
 
 
 def test_repository_does_not_ship_evidence_data():
+    tracked = subprocess.run(
+        ["git", "ls-files"],
+        cwd=ROOT,
+        check=True,
+        text=True,
+        capture_output=True,
+    ).stdout.splitlines()
+
     forbidden_suffixes = {".jsonl", ".pyc"}
-    for path in ROOT.rglob("*"):
-        if ".git" in path.parts:
-            continue
-        if path.is_file():
-            assert path.suffix not in forbidden_suffixes
+    assert not [
+        path for path in tracked
+        if Path(path).suffix in forbidden_suffixes
+    ]
