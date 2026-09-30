@@ -36,7 +36,8 @@ def test_browser_path_is_configurable():
 def test_missing_ledger_guard_is_present():
     text = (EXT / "ledger_common.py").read_text(encoding="utf-8")
     assert "LEDGER_MISSING" in text
-    assert "Refusing to create a replacement automatically" in text
+    assert "Refusing to create a " in text
+    assert "replacement automatically because that would break " in text
 
 
 def test_repository_does_not_ship_evidence_data():
