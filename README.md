@@ -126,4 +126,4 @@ The test suite covers session isolation, compaction-safe resolution, concurrent 
 
 ## Licence
 
-A public open-source licence has not yet been selected. Do not treat the current staging version as licensed for redistribution until a licence is added.
+MIT. See [LICENSE](LICENSE). Personal and commercial use, modification and redistribution are permitted subject to the MIT licence. Third-party dependencies retain their own licences.
