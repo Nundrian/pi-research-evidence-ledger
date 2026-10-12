@@ -33,6 +33,12 @@ Each Pi session gets a separate human-readable JSONL ledger under `RESEARCH_LEDG
 - missing registered ledgers fail with `LEDGER_MISSING` rather than silently creating a replacement
 - current-session lookup is the Pi tool default; explicit `scope="all"` searches across registered ledgers
 
+## Security and deployment scope
+
+Read [SECURITY.md](SECURITY.md) before installation. The Chromium browser can reach hosts and local services accessible from its container, and webpage text is untrusted. Session-specific ledgers are **organisational separation, not a cross-user access-control mechanism**: `scope="all"` deliberately reads multiple ledgers and evidence recording accepts an existing visit ID. Keep a shared ledger directory accessible only to trusted users.
+
+Dependencies are not locked to tested versions in this repository. For a reproducible installation, pin reviewed Pi, Python and Nodriver versions in your own deployment and rerun tests after upgrades.
+
 ## Requirements
 
 - Pi with package support
